@@ -1,6 +1,6 @@
 class Key
 
-  attr_reader :a, b, c, d
+  attr_reader :a, :b, :c, :d
   def initialize
     @a = Random.new.rand(9)
     @b = Random.new.rand(9)
