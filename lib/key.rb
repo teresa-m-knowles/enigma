@@ -1,15 +1,18 @@
 class Key
 
-  attr_reader :a, :b, :c, :d
-  def initialize
-    @a = Random.new.rand(9)
-    @b = Random.new.rand(9)
-    @c = Random.new.rand(9)
-    @d = Random.new.rand(9)
+  attr_reader :numbers
+
+  def initialize(*optional_key)
+    @numbers = generate_numbers
+
   end
 
-  def abcd
-    return a,b,c,d
+  def generate_numbers
+    string = ""
+     5.times do
+       string += Random.new.rand(9).to_s
+     end
+     string
   end
 
 
