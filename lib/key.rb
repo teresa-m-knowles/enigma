@@ -19,7 +19,7 @@ class Key
   def generate_numbers
     string = ""
      5.times do
-       string += Random.new.rand(9).to_s
+       string += Random.new.rand(10).to_s
      end
      string
   end
