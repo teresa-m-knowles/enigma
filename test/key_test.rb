@@ -1,9 +1,10 @@
+require './test/test_helper'
 require 'minitest/autorun'
 require 'minitest/pride'
-require './test/test_helper'
 require './lib/key'
+require 'pry'
 
-class KeyTest < Minitest :: Test
+class KeyTest < Minitest::Test
 
   def test_it_exists
     key = Key.new
@@ -15,11 +16,22 @@ class KeyTest < Minitest :: Test
 
     key = Key.new
 
-    key.abcd.all? do |letter|
-      assert_instance_of Integer, letter
+    key.generate_numbers.split('').each do |char|
+      new = char.to_i
+      assert_equal true, (0..9).include?(new)
     end
 
-    assert_equal 5, key.abcd.count
+    assert_equal 5, key.generate_numbers.length
+
+  end
+
+  def test_it_creates_numbers_each_time_a_new_key_is_created
+
+    key = Key.new
+
+    key.numbers.split('').each do |number|
+      assert_equal true, (0..9).include?(number.to_i)
+    end
 
   end
 
