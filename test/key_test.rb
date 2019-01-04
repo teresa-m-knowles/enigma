@@ -35,11 +35,12 @@ class KeyTest < Minitest::Test
 
   end
 
-  def test_it_can_assign_numbers_to_letters_two_by_two
+  def test_it_can_assign_numbers_to_letters_in_sets_of_two
     key = Key.new
-
     assert_instance_of Integer, key.a
-    assert_equal 2, key.a.count
+    assert_instance_of Integer, key.b
+    assert_instance_of Integer, key.c
+    assert_instance_of Integer, key.d
   end
 
 end
