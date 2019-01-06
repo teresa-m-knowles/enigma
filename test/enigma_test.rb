@@ -124,4 +124,28 @@ class EnigmaTest < Minitest::Test
     assert_equal expected, enigma.rotate_back(message,shift)
 
   end
+
+  def test_it_uses_todays_date_if_no_date_is_given
+    enigma = Enigma.new
+    encrypted = enigma.encrypt("hello world", "02715")
+    today = Date.today.strftime("%d%m%y")
+    expected = {
+                :encryption => "nfhauasdxm ",
+                :key =>  "02715",
+                :date => today
+    }
+    assert_equal expected, encrypted
+  end
+
+  def test_it_can_decrypt_a_message_with_just_a_key_by_using_todays_date
+    enigma = Enigma.new
+    encrypted = enigma.decrypt("nfhauasdxm ", "02715")
+    today = Date.today.strftime("%d%m%y")
+    expected = {
+                :decryption => "hello world",
+                :key =>  "02715",
+                :date => today
+    }
+    assert_equal expected, encrypted
+  end
 end
