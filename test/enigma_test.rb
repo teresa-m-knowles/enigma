@@ -52,11 +52,11 @@ class EnigmaTest < Minitest::Test
 
     enigma = Enigma.new
     expected =  {
-                  encryption: "keder ohulw!",
+                  encryption: "k!der ohulw@",
                   key: "02715",
                   date: "040895"
    }
 
-   assert_equal expected, enigma.encrypt("hello world!", "02715", "040895")
+   assert_equal expected, enigma.encrypt("h!llo world@", "02715", "040895")
   end
 end
