@@ -3,37 +3,41 @@ require 'pry'
 
 class Offset
 
-  attr_accessor :date
+  attr_accessor :date,
+                :last_four,
+                :a,
+                :b,
+                :c,
+                :d
+
 
   def initialize(date = nil)
     if date
       @date = date.to_s
-      divide_string
     else
-      @date = Date.today.to_s
+      @date = Date.today
       format_date_to_DDMMYY
     end
-    binding.pry
-    format_date_to_DDMMYY
+    getting_offset_from_date
   end
 
   def format_date_to_DDMMYY
-    divided = @date.split('-')
-    day = divided[2]
-    month = divided[1]
-    year = divided[0][2..-1]
-    @date = day + month + year
-  end
-
-  def divide_string
-    day = @date[0..1]
-    month = @date[2..3]
-    year = @date[4..5]
+    @date = @date.strftime("%d%m%y")
   end
 
   def getting_offset_from_date
     initial_number = @date.to_i
-    c
+    squared = initial_number * initial_number
+    @last_four = squared.to_s[-4..-1]
+  end
+
+  def assigning_numbers_to_letters
+    four = @last_four.to_s
+    @a = four[0].to_i
+    @b = four[1].to_i
+    @c = four[2].to_i
+    @d = four[3].to_i
+    binding.pry
 
   end
 
