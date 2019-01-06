@@ -99,4 +99,16 @@ class EnigmaTest < Minitest::Test
     assert_equal expected,  enigma.decrypt("keder ohulw", "02715", "040895")
 
   end
+
+  def test_it_can_rotate_backward
+    enigma = Enigma.new
+    key = Key.new("1234")
+    date = Offset.new("050119")
+    shift = Shift.new(key, date)
+
+    expected = "abcd"
+    message = "qzpi"
+
+    assert_equal expected, enigma.rotate_back(message,shift)
+  end
 end
