@@ -93,5 +93,4 @@ class Enigma
 
   end
 
-
 end
