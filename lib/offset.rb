@@ -19,6 +19,7 @@ class Offset
       format_date_to_DDMMYY
     end
     getting_offset_from_date
+    assigning_numbers_to_letters
   end
 
   def format_date_to_DDMMYY
@@ -37,8 +38,6 @@ class Offset
     @b = four[1].to_i
     @c = four[2].to_i
     @d = four[3].to_i
-    binding.pry
-
   end
 
 
