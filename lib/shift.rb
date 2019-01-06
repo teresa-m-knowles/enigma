@@ -18,4 +18,5 @@ class Shift
     @c = key.c + offset.c
     @d = key.d + offset.d
   end
+
 end
