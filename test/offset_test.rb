@@ -31,4 +31,10 @@ class OffsetTest < Minitest::Test
     today = Date.today.strftime("%d%m%y")
     assert_equal offset.date, today
   end
+
+  def test_it_can_get_offset_from_date
+    offset = Offset.new("101214")
+    assert_equal "3796", offset.last_four
+
+  end
 end
