@@ -75,7 +75,7 @@ class EnigmaTest < Minitest::Test
 
   end
 
-  def test_it_can_rotate_a_message_by_n_characters
+  def test_it_can_rotate_forward_a_message_by_n_characters
     enigma = Enigma.new
     key = Key.new("1234")
     date = Offset.new("050119")
@@ -84,6 +84,19 @@ class EnigmaTest < Minitest::Test
     message = "abcd"
     expected = "qzpi"
 
-    assert_equal expected, enigma.rotate(message, shift)
+    assert_equal expected, enigma.rotate_forward(message, shift)
+  end
+
+  def test_it_can_decrypt_a_message
+    enigma = Enigma.new
+
+    expected =   {
+                    decryption: "hello world",
+                    key: "02715",
+                    date: "040895"
+                  }
+
+    assert_equal expected,  enigma.decrypt("keder ohulw", "02715", "040895")
+
   end
 end
