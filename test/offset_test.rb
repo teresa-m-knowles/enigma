@@ -35,6 +35,16 @@ class OffsetTest < Minitest::Test
   def test_it_can_get_offset_from_date
     offset = Offset.new("101214")
     assert_equal "3796", offset.last_four
+  end
+
+  def test_it_can_assign_numbers_to_letters
+      offset = Offset.new("101214")
+      assert_equal "3796", offset.last_four
+
+      assert_equal 3, offset.a
+      assert_equal 7, offset.b
+      assert_equal 9, offset.c
+      assert_equal 6, offset.d
 
   end
 end
