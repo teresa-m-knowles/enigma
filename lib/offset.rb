@@ -31,5 +31,11 @@ class Offset
     year = @date[4..5]
   end
 
+  def getting_offset_from_date
+    initial_number = @date.to_i
+    c
+
+  end
+
 
 end
