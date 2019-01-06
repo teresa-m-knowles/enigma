@@ -111,4 +111,17 @@ class EnigmaTest < Minitest::Test
 
     assert_equal expected, enigma.rotate_back(message,shift)
   end
+
+  def test_rotate_back_also_returns_special_characters_as_themselves
+    enigma = Enigma.new
+    key = Key.new("1234")
+    date = Offset.new("050119")
+    shift = Shift.new(key, date)
+
+    message = "qzp!"
+    expected = "abc!"
+
+    assert_equal expected, enigma.rotate_back(message,shift)
+
+  end
 end
