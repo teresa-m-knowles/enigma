@@ -2,6 +2,7 @@ require './test/test_helper'
 require 'minitest/autorun'
 require 'minitest/pride'
 require './lib/enigma'
+require './lib/shift'
 require 'date'
 
 class EnigmaTest < Minitest::Test
@@ -58,5 +59,31 @@ class EnigmaTest < Minitest::Test
    }
 
    assert_equal expected, enigma.encrypt("h!llo world@", "02715", "040895")
+  end
+
+  def test_it_can_split_a_message_every_four_characters
+    enigma = Enigma.new
+    message = "Aegon is a Blackfyre"
+
+    expected =  [["a", "e", "g", "o"],
+                  ["n", " ", "i", "s"],
+                  [" ", "a", " ", "b"],
+                  ["l", "a", "c", "k"],
+                  ["f", "y", "r", "e"]]
+
+  assert_equal expected, enigma.split_message_in_fours(message)
+
+  end
+
+  def test_it_can_rotate_a_message_by_n_characters
+    enigma = Enigma.new
+    key = Key.new("1234")
+    date = Offset.new("050119")
+    shift = Shift.new(key, date)
+
+    message = "abcd"
+    expected = "qzpi"
+
+    assert_equal expected, enigma.rotate(message, shift)
   end
 end
