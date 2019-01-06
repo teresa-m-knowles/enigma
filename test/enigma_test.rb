@@ -148,4 +148,16 @@ class EnigmaTest < Minitest::Test
     }
     assert_equal expected, encrypted
   end
+
+  def test_it_generates_a_random_key_and_uses_todays_date_if_only_a_message_is_given_to_encrypt
+    enigma = Enigma.new
+    today = Date.today.strftime("%d%m%y")
+
+    encrypted = enigma.encrypt("hello world")
+
+    assert_equal 11, encrypted[:encryption].length
+    assert_equal today, encrypted[:date]
+    assert_equal 5, encrypted[:key].length
+
+  end
 end
