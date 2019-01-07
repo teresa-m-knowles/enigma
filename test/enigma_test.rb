@@ -163,9 +163,9 @@ class EnigmaTest < Minitest::Test
 
   def test_it_can_crack_an_encrypted_message
     enigma = Enigma.new
-    encrypted_message = "hello world end"
 
     actual = enigma.crack("vjqtbeaweqihssi", "291018")
+
     expected = {
                 decryption: "hello world end",
                 date: "291018",
