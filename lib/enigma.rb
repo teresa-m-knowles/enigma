@@ -93,4 +93,10 @@ class Enigma
 
   end
 
+  def crack(encrypted_message,date = nil)
+    date = create_date(date)
+    ending = " end"
+
+  end
+
 end
