@@ -8,12 +8,14 @@ class Shift
               :a,
               :b,
               :c,
-              :d
+              :d,
+              :letters
 
   def initialize(key = nil, offset = nil)
     @key = key
     @offset = offset
     find_each_shift
+    @letters = [@a,@b,@c,@d]
   end
 
   def find_each_shift

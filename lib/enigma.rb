@@ -31,69 +31,65 @@ class Enigma
     message.downcase.split('').each_slice(4).to_a
   end
 
-  def rotate_forward(given_message, shift)
-    split_message_in_fours(given_message).map do |set_of_four|
-      encoded = ""
-      set_of_four.map.with_index do |char, i|
-        index_in_alphabet = @character_set.index(char)
-        if !@character_set.include?(char)
-          encoded += char
-        else
-          if i == 0
-            encoded += char = @character_set.rotate(shift.a)[index_in_alphabet]
-          elsif i == 1
-            encoded += char = @character_set.rotate(shift.b)[index_in_alphabet]
-          elsif i == 2
-            encoded += char = @character_set.rotate(shift.c)[index_in_alphabet]
-          elsif i == 3
-            encoded += char = @character_set.rotate(shift.d)[index_in_alphabet]
-          end
-        end
-      end
-      encoded
-    end.join
+  def rotate(four_characters, shift)
+    encoded = ""
+    x = four_characters.zip(shift.letters)
+    x.each do |element|
+      index_in_alphabet =  @character_set.index(element.first)
+      if !@character_set.include?(element.first)
+        encoded += element.first
+      else
+        encoded += @character_set.rotate(element.last)[index_in_alphabet]
+      end #end of if else
+    end.join #end of map
+    encoded
+  end
 
+  def rotate_back(four_characters, shift)
+    encoded = ""
+    x = four_characters.zip(shift.letters)
+    x.each do |element|
+      index_in_alphabet =  @character_set.index(element.first)
+      if !@character_set.include?(element.first)
+        encoded += element.first
+      else
+        encoded += @character_set.rotate(-element.last)[index_in_alphabet]
+      end #end of if else
+    end.join #end of map
+    encoded
+  end
+# end
+
+  def rotate_forward_full_message(given_message, shift)
+    message = split_message_in_fours(given_message)
+    message.map do |set_of_four|
+      rotate(set_of_four,shift)
+    end.join
+  end
+
+  def rotate_back_full_message(given_message, shift)
+    message = split_message_in_fours(given_message)
+    message.map do |set_of_four|
+      rotate_back(set_of_four,shift)
+    end.join
   end
 
   def encrypt(given_message, given_key = nil, given_date = nil)
-    date = create_date(given_date)
-    key = create_key(given_key)
-    shift = Shift.new(key,date)
-    {:encryption => rotate_forward(given_message,shift), :key=> key.numbers, :date => date.date  }
+   date = create_date(given_date)
+   key = create_key(given_key)
+   shift = Shift.new(key,date)
+   {:encryption => rotate_forward_full_message(given_message,shift), :key=> key.numbers, :date => date.date  }
   end
 
-  def decrypt(given_message, key, date = nil)
-    key = create_key(key)
-    date = create_date(date)
-    shift = Shift.new(key,date)
-              {:decryption => rotate_back(given_message,shift),
-                :key=> key.numbers,
-                :date => date.date  }
-  end
+ def decrypt(given_message, key, date = nil)
+   key = create_key(key)
+   date = create_date(date)
+   shift = Shift.new(key,date)
 
-  def rotate_back(given_message, shift)
-    split_message_in_fours(given_message).map do |set_of_four|
-      encoded = ""
-      set_of_four.map.with_index do |char, i|
-        index_in_alphabet = @character_set.index(char)
-        if !@character_set.include?(char)
-          encoded += char
-        else
-          if i == 0
-            encoded += char = @character_set.rotate(-shift.a)[index_in_alphabet]
-          elsif i == 1
-            encoded += char = @character_set.rotate(-shift.b)[index_in_alphabet]
-          elsif i == 2
-            encoded += char = @character_set.rotate(-shift.c)[index_in_alphabet]
-          elsif i == 3
-            encoded += char = @character_set.rotate(-shift.d)[index_in_alphabet]
-          end
-        end
-      end
-      encoded
-    end.join
-
-  end
+  {:decryption => rotate_back_full_message(given_message,shift),
+  :key=> key.numbers,
+  :date => date.date  }
+ end
 
   # def crack(encrypted_message,date = nil)
   #   date = create_date(date)
