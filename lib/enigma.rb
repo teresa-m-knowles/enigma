@@ -95,37 +95,37 @@ class Enigma
 
   end
 
-  def crack(encrypted_message,date = nil)
-    date = create_date(date)
-    array_of_chars = split_message_in_fours(encrypted_message)
-    last_four = array_of_chars.flatten[-4..-1]
-    actual_a_index = @character_set.index(" ")
-    actual_b_index = @character_set.index("e")
-    actual_c_index = @character_set.index("n")
-    actual_d_index = @character_set.index("d")
-
-    index_a = @character_set.index(last_four[0])
-    index_b = @character_set.index(last_four[1])
-    index_c = @character_set.index(last_four[2])
-    index_d = @character_set.index(last_four[3])
-
-    shift = Shift.new
-
-    shift.a = index_a + 1
-    shift.b = index_b - actual_b_index
-    shift.c = index_c - actual_c_index
-    shift.d = index_d - actual_d_index
-
-    key_a = shift.a - date.a
-    key_b = shift.b - date.b
-    key_c = shift.c - date.c
-    key_d = shift.d - date.d
-    binding.pry
-
-
-
-
-    binding.pry
+  # def crack(encrypted_message,date = nil)
+  #   date = create_date(date)
+  #   array_of_chars = split_message_in_fours(encrypted_message)
+  #   last_four = array_of_chars.flatten[-4..-1]
+  #   actual_a_index = @character_set.index(" ")
+  #   actual_b_index = @character_set.index("e")
+  #   actual_c_index = @character_set.index("n")
+  #   actual_d_index = @character_set.index("d")
+  #
+  #   index_a = @character_set.index(last_four[0])
+  #   index_b = @character_set.index(last_four[1])
+  #   index_c = @character_set.index(last_four[2])
+  #   index_d = @character_set.index(last_four[3])
+  #
+  #   shift = Shift.new
+  #
+  #   shift.a = index_a + 1
+  #   shift.b = index_b - actual_b_index
+  #   shift.c = index_c - actual_c_index
+  #   shift.d = index_d - actual_d_index
+  #
+  #   key_a = shift.a - date.a
+  #   key_b = shift.b - date.b
+  #   key_c = shift.c - date.c
+  #   key_d = shift.d - date.d
+  #   binding.pry
+  #
+  #
+  #
+  #
+  #   binding.pry
     #
     # last_four.map.with_index do |char,i|
     #   index_in_alphabet = @character_set.index(char)
@@ -134,7 +134,7 @@ class Enigma
     #   shift.a
     # end
 
-  end
+  # end
 
 
 end
