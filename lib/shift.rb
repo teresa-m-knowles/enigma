@@ -3,8 +3,12 @@ require './lib/offset'
 
 class Shift
 
-  attr_reader :key, :offset
-  attr_accessor :a, :b, :c, :d
+  attr_reader :key,
+              :offset,
+              :a,
+              :b,
+              :c,
+              :d
 
   def initialize(key = nil, offset = nil)
     @key = key

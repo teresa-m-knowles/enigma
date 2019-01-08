@@ -1,6 +1,7 @@
 require './test/test_helper'
 require 'minitest/autorun'
 require 'minitest/pride'
+require 'mocha/minitest'
 require './lib/shift'
 require './lib/key'
 require './lib/offset'
@@ -16,6 +17,7 @@ class ShiftTest < Minitest::Test
   end
 
   def test_it_can_find_each_shift
+
     key = mock
     offset = mock
 
@@ -29,14 +31,14 @@ class ShiftTest < Minitest::Test
     offset.stubs(:c).returns(3)
     offset.stubs(:d).returns(4)
 
-    offset = Offset.new(shift, key)
+    shift = Shift.new(key, offset)
 
-    offset.find_each_shift
+    shift.find_each_shift
 
-    assert_equal 2, offset.a
-    assert_equal 4, offset.b
-    assert_equal 6, offset.c
-    assert_equal 8, offset.d
+    assert_equal 2, shift.a
+    assert_equal 4, shift.b
+    assert_equal 6, shift.c
+    assert_equal 8, shift.d
 
   end
 end

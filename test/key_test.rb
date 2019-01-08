@@ -53,7 +53,6 @@ class KeyTest < Minitest::Test
   def test_it_can_set_all_numbers
 
     key = Key.new("02453")
-
     key.set_numbers
 
     assert_equal 2, key.a
@@ -64,6 +63,7 @@ class KeyTest < Minitest::Test
 
   def test_it_can_assign_numbers_to_letters_in_sets_of_two
     key = Key.new
+
     assert_instance_of Integer, key.a
     assert_instance_of Integer, key.b
     assert_instance_of Integer, key.c
@@ -72,6 +72,7 @@ class KeyTest < Minitest::Test
 
   def test_it_can_be_assigned_numbers_instead_of_randomly_generating_them
     key = Key.new("02453")
+
     assert_instance_of Integer, key.a
     assert_instance_of Integer, key.b
     assert_instance_of Integer, key.c
