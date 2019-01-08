@@ -60,7 +60,6 @@ class Enigma
     key = create_key(given_key)
     shift = Shift.new(key,date)
     {:encryption => rotate_forward(given_message,shift), :key=> key.numbers, :date => date.date  }
-    binding.pry
   end
 
   def decrypt(given_message, key, date = nil)

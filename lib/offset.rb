@@ -12,18 +12,21 @@ class Offset
 
 
   def initialize(date = nil)
-    if date
-      @date = date.to_s
-    else
-      @date = Date.today
-      format_date_to_DDMMYY
-    end
+    set_date(date)
     getting_offset_from_date
     assigning_numbers_to_letters
   end
 
+  def set_date(date = nil)
+    if date
+      @date = date.to_s
+    else
+      @date = format_date_to_DDMMYY
+    end
+  end
+
   def format_date_to_DDMMYY
-    @date = @date.strftime("%d%m%y")
+    Date.today.strftime("%d%m%y")
   end
 
   def getting_offset_from_date
