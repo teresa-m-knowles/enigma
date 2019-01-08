@@ -79,6 +79,15 @@ class EnigmaTest < Minitest::Test
 
   end
 
+  def test_it_can_rotate_one_character
+
+    enigma = Enigma.new
+
+    assert_equal "c", enigma.rotate_one_character("a", 2)
+    assert_equal "!", enigma.rotate_one_character("!", 5)
+    assert_equal " ", enigma.rotate_one_character(" ", 27)
+  end
+
   def test_it_can_rotate_forward_a_message_by_n_characters
 
     enigma = Enigma.new

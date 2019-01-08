@@ -31,7 +31,7 @@ class Enigma
     message.downcase.split('').each_slice(4).to_a
   end
 
-  def rotate_one_character_and_add_to_encoded(char, rotate_by)
+  def rotate_one_character(char, rotate_by)
     encoded = ""
     if !@character_set.include?(char)
       encoded += char
@@ -44,7 +44,7 @@ class Enigma
   def rotate(four_characters_array, shift)
     encoded = ""
     four_characters_array.zip(shift.letters).each do |element|
-      encoded += rotate_one_character_and_add_to_encoded(element.first, element.last)
+      encoded += rotate_one_character(element.first, element.last)
     end
     encoded
   end
@@ -53,7 +53,7 @@ class Enigma
   def rotate_back(four_characters_array, shift)
     encoded = ""
     four_characters_array.zip(shift.letters).each do |element|
-      encoded += rotate_one_character_and_add_to_encoded(element.first, -element.last)
+      encoded += rotate_one_character(element.first, -element.last)
     end
     encoded
   end
