@@ -24,6 +24,7 @@ class OffsetTest < Minitest::Test
 
     offset = Offset.new
     expected = Date.today.strftime("%d%m%y")
+
     assert_equal expected, offset.date
 
     offset.set_date("010119")
