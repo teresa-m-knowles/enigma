@@ -31,15 +31,20 @@ class Enigma
     message.downcase.split('').each_slice(4).to_a
   end
 
+  def rotate_one_character_and_add_to_encoded(char, rotate_by)
+    encoded = ""
+    if !@character_set.include?(char)
+      encoded += char
+    else
+      encoded += @character_set.rotate(rotate_by)[@character_set.index(char)]
+    end
+    encoded
+  end
+
   def rotate(four_characters_array, shift)
     encoded = ""
     four_characters_array.zip(shift.letters).each do |element|
-      index_in_alphabet =  @character_set.index(element.first)
-      if !@character_set.include?(element.first)
-        encoded += element.first
-      else
-        encoded += @character_set.rotate(element.last)[index_in_alphabet]
-      end
+      encoded += rotate_one_character_and_add_to_encoded(element.first, element.last)
     end
     encoded
   end
@@ -48,13 +53,8 @@ class Enigma
   def rotate_back(four_characters_array, shift)
     encoded = ""
     four_characters_array.zip(shift.letters).each do |element|
-      index_in_alphabet =  @character_set.index(element.first)
-      if !@character_set.include?(element.first)
-        encoded += element.first
-      else
-        encoded += @character_set.rotate(-element.last)[index_in_alphabet]
-      end
-    end #end of each
+      encoded += rotate_one_character_and_add_to_encoded(element.first, -element.last)
+    end
     encoded
   end
 
