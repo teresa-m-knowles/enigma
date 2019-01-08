@@ -16,14 +16,27 @@ class ShiftTest < Minitest::Test
   end
 
   def test_it_can_find_each_shift
-    key = Key.new("02453")
-    offset = Offset.new("101214")
-    assert_equal "3796", offset.last_four
-    shift = Shift.new(key, offset)
+    key = mock
+    offset = mock
 
-    assert_equal 5, shift.a
-    assert_equal 31, shift.b
-    assert_equal 54, shift.c
-    assert_equal 59, shift.d
+    key.stubs(:a).returns(1)
+    key.stubs(:b).returns(2)
+    key.stubs(:c).returns(3)
+    key.stubs(:d).returns(4)
+
+    offset.stubs(:a).returns(1)
+    offset.stubs(:b).returns(2)
+    offset.stubs(:c).returns(3)
+    offset.stubs(:d).returns(4)
+
+    offset = Offset.new(shift, key)
+
+    offset.find_each_shift
+
+    assert_equal 2, offset.a
+    assert_equal 4, offset.b
+    assert_equal 6, offset.c
+    assert_equal 8, offset.d
+
   end
 end
