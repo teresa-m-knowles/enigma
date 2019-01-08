@@ -4,7 +4,6 @@ require 'pry'
 class Offset
 
   attr_accessor :date,
-                :last_four,
                 :a,
                 :b,
                 :c,
@@ -31,12 +30,10 @@ class Offset
 
   def getting_offset_from_date
     initial_number = @date.to_i
-    squared = initial_number * initial_number
-    @last_four = squared.to_s[-4..-1]
+    (initial_number * initial_number).to_s[-4..-1]
   end
 
-  def assigning_numbers_to_letters
-    four = @last_four.to_s
+  def assigning_numbers_to_letters(four = getting_offset_from_date)
     @a = four[0].to_i
     @b = four[1].to_i
     @c = four[2].to_i
