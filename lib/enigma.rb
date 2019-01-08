@@ -41,7 +41,7 @@ class Enigma
     encoded
   end
 
-  def rotate(four_characters_array, shift)
+  def rotate_forward(four_characters_array, shift)
     encoded = ""
     four_characters_array.zip(shift.letters).each do |element|
       encoded += rotate_one_character(element.first, element.last)
@@ -63,7 +63,7 @@ class Enigma
   def rotate_forward_full_message(given_message, shift)
     message = split_message_in_fours(given_message)
     message.map do |set_of_four|
-      rotate(set_of_four,shift)
+      rotate_forward(set_of_four,shift)
     end.join
   end
 
