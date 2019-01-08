@@ -16,8 +16,7 @@ class KeyTest < Minitest::Test
     key = Key.new
 
     key.generate_numbers.split('').each do |char|
-      new = char.to_i
-      assert_equal true, (0..9).include?(new)
+      assert_equal true, (0..9).include?(char.to_i)
     end
 
     assert_equal 5, key.generate_numbers.length
@@ -30,7 +29,37 @@ class KeyTest < Minitest::Test
     key.numbers.split('').each do |number|
       assert_equal true, (0..9).include?(number.to_i)
     end
+  end
 
+  def test_it_can_split_numbers
+    numbers = "20301"
+    key = Key.new
+
+    expected = ["2", "0", "3", "0", "1"]
+
+    assert_equal expected, key.split_numbers(numbers)
+
+  end
+
+  def test_it_can_set_letters
+    key = Key.new("02453")
+
+    assert_equal 2, key.set_a
+    assert_equal 24, key.set_b
+    assert_equal 45, key.set_c
+    assert_equal 53, key.set_d
+  end
+
+  def test_it_can_set_all_numbers
+
+    key = Key.new("02453")
+
+    key.set_numbers
+
+    assert_equal 2, key.a
+    assert_equal 24, key.b
+    assert_equal 45, key.c
+    assert_equal 53, key.d
   end
 
   def test_it_can_assign_numbers_to_letters_in_sets_of_two
