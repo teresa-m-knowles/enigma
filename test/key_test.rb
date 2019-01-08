@@ -13,7 +13,6 @@ class KeyTest < Minitest::Test
   end
 
   def test_it_can_randomly_generate_five_numbers
-
     key = Key.new
 
     key.generate_numbers.split('').each do |char|
@@ -22,7 +21,6 @@ class KeyTest < Minitest::Test
     end
 
     assert_equal 5, key.generate_numbers.length
-
   end
 
   def test_it_creates_numbers_each_time_a_new_key_is_created
