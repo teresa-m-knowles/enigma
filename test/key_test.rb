@@ -12,6 +12,14 @@ class KeyTest < Minitest::Test
     assert_instance_of Key, key
   end
 
+  def test_it_can_set_numbers
+    key = Key.new
+    key.set_key("2020")
+
+    assert_equal "2020", key.numbers
+
+  end
+
   def test_it_can_randomly_generate_five_numbers
     key = Key.new
 
