@@ -79,11 +79,6 @@ class KeyTest < Minitest::Test
   def test_it_can_be_assigned_numbers_instead_of_randomly_generating_them
     key = Key.new("02453")
 
-    assert_instance_of Integer, key.a
-    assert_instance_of Integer, key.b
-    assert_instance_of Integer, key.c
-    assert_instance_of Integer, key.d
-
     assert_equal 2, key.a
     assert_equal 24, key.b
     assert_equal 45, key.c
