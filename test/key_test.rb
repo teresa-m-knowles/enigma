@@ -38,7 +38,7 @@ class KeyTest < Minitest::Test
     end
   end
 
-  def test_it_can_split_numbers
+  def test_it_can_split_numbers_into_an_array
     numbers = "20301"
     key = Key.new
 
