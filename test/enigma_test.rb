@@ -79,6 +79,15 @@ class EnigmaTest < Minitest::Test
 
   end
 
+  def test_it_can_rotate_one_character
+
+    enigma = Enigma.new
+
+    assert_equal "c", enigma.rotate_one_character("a", 2)
+    assert_equal "!", enigma.rotate_one_character("!", 5)
+    assert_equal " ", enigma.rotate_one_character(" ", 27)
+  end
+
   def test_it_can_rotate_forward_a_message_by_n_characters
 
     enigma = Enigma.new
@@ -89,7 +98,7 @@ class EnigmaTest < Minitest::Test
     message = "abcd"
     expected = "qzpi"
 
-    assert_equal expected, enigma.rotate_forward(message, shift)
+    assert_equal expected, enigma.rotate_forward_full_message(message, shift)
   end
 
   def test_it_can_decrypt_a_message
@@ -116,7 +125,7 @@ class EnigmaTest < Minitest::Test
     expected = "abcd"
     message = "qzpi"
 
-    assert_equal expected, enigma.rotate_back(message,shift)
+    assert_equal expected, enigma.rotate_back(message.split(''),shift)
   end
 
   def test_rotate_back_also_returns_special_characters_as_themselves
@@ -129,7 +138,7 @@ class EnigmaTest < Minitest::Test
     message = "qzp!"
     expected = "abc!"
 
-    assert_equal expected, enigma.rotate_back(message,shift)
+    assert_equal expected, enigma.rotate_back(message.split(''),shift)
 
   end
 
@@ -138,6 +147,8 @@ class EnigmaTest < Minitest::Test
     enigma = Enigma.new
     encrypted = enigma.encrypt("hello world", "02715")
     today = Date.today.strftime("%d%m%y")
+
+
     expected = {
                 :encryption => "nfhauasdxm ",
                 :key =>  "02715",
