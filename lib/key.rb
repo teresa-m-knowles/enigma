@@ -12,7 +12,7 @@ class Key
     else
        @numbers = generate_numbers
     end
-    set_numbers
+    set_letters
   end
 
   def generate_numbers
@@ -43,7 +43,7 @@ class Key
     @d = split_numbers[3..4].join.to_i
   end
 
-  def set_numbers
+  def set_letters
     set_a
     set_b
     set_c
