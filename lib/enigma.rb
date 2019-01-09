@@ -51,6 +51,16 @@ class Enigma
   :date => date.date  }
  end
 
+ def crack(message, date = nil)
+   possible_keys = ("00000".."99999").to_a
+
+   found_key = possible_keys.find do |key|
+    decryption = decrypt(message, key, date)
+    decryption[:decryption][-4..-1] == " end"
+   end
+   decrypt(message, found_key, date)
+ end
+
 
 
 end
