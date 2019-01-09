@@ -16,11 +16,11 @@ class Key
   end
 
   def generate_numbers
-    string = ""
+    random_numbers = ""
      5.times do
-       string += Random.new.rand(10).to_s
+       random_numbers += Random.new.rand(10).to_s
      end
-     string
+     random_numbers
   end
 
   def split_numbers(numbers = @numbers)
