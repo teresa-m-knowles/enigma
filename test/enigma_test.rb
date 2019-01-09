@@ -128,6 +128,34 @@ class EnigmaTest < Minitest::Test
 
   end
 
+  def test_it_can_rotate_forward_a_full_message
+    enigma = Enigma.new
+    key = Key.new("02715")
+    date = Offset.new("040895")
+    shift = Shift.new(key, date)
+
+    message = "hello world"
+
+    actual = enigma.rotate_forward_full_message(message, shift)
+    expected = "keder ohulw"
+
+    assert_equal expected, actual
+  end
+
+  def test_it_can_rotate_back_a_full_message
+    enigma = Enigma.new
+    key = Key.new("02715")
+    date = Offset.new("040895")
+    shift = Shift.new(key, date)
+
+    message = "keder ohulw"
+
+    actual = enigma.rotate_back_full_message(message, shift)
+    expected = "hello world"
+
+    assert_equal expected, actual
+  end
+
   def test_it_can_decrypt_a_message
 
     enigma = Enigma.new
@@ -185,19 +213,6 @@ class EnigmaTest < Minitest::Test
 
   end
 
-  # def test_it_can_crack_an_encrypted_message
-  #   skip
-  #   enigma = Enigma.new
-  #   binding.pry
-  #   actual = enigma.crack("vjqtbeaweqihssi", "291018")
-  #
-  #   expected = {
-  #               decryption: "hello world end",
-  #               date: "291018",
-  #               key: "08304"
-  #             }
-  #   binding.pry
-  #   assert_equal expected, actual
-  #
-  # end
+
+
 end
