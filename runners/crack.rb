@@ -1,13 +1,12 @@
 require './lib/enigma'
+require 'pry'
 enigma = Enigma.new
 
-encrypted_message = File.read(ARGV.first)
+encrypted_message = File.read(ARGV[0]).chomp
 decrypted_destination = File.open(ARGV[1], "w")
-key = ARGV[2]
-date = ARGV.last
+date = ARGV[2].chomp
 
-
-decrypt_hash = enigma.decrypt(encrypted_message, key, date)
+decrypt_hash = enigma.crack(encrypted_message, date)
 
 decrypted_destination.write(decrypt_hash[:decryption])
 

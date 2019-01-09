@@ -28,7 +28,7 @@ class Offset
   end
 
   def getting_offset_from_date
-    (date.to_i * date.to_i).to_s[-4..-1]
+    (@date.to_i * @date.to_i).to_s[-4..-1]
   end
 
   def assigning_numbers_to_letters(four = getting_offset_from_date)

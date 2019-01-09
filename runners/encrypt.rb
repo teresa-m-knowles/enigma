@@ -1,4 +1,3 @@
-require 'pry'
 require './lib/enigma'
 message = File.read(ARGV.first)
 enigma = Enigma.new
