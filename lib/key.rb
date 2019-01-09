@@ -7,20 +7,24 @@ class Key
               :d
 
   def initialize(optional_key = nil)
-    if optional_key
-      @numbers = optional_key
+    set_key(optional_key)
+    set_letters
+  end
+
+  def set_key(key = nil)
+    if key
+      @numbers = key
     else
-       @numbers = generate_numbers
+      @numbers = generate_numbers
     end
-    set_numbers
   end
 
   def generate_numbers
-    string = ""
+    random_numbers = ""
      5.times do
-       string += Random.new.rand(10).to_s
+       random_numbers += Random.new.rand(10).to_s
      end
-     string
+     random_numbers
   end
 
   def split_numbers(numbers = @numbers)
@@ -43,7 +47,7 @@ class Key
     @d = split_numbers[3..4].join.to_i
   end
 
-  def set_numbers
+  def set_letters
     set_a
     set_b
     set_c

@@ -3,7 +3,6 @@ require 'minitest/autorun'
 require 'minitest/pride'
 require './lib/offset'
 require 'date'
-require 'pry'
 
 class OffsetTest < Minitest::Test
 

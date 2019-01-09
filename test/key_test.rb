@@ -12,6 +12,13 @@ class KeyTest < Minitest::Test
     assert_instance_of Key, key
   end
 
+  def test_it_can_set_numbers
+    key = Key.new
+    key.set_key("2020")
+
+    assert_equal "2020", key.numbers
+  end
+
   def test_it_can_randomly_generate_five_numbers
     key = Key.new
 
@@ -31,7 +38,7 @@ class KeyTest < Minitest::Test
     end
   end
 
-  def test_it_can_split_numbers
+  def test_it_can_split_numbers_into_an_array
     numbers = "20301"
     key = Key.new
 
@@ -41,7 +48,7 @@ class KeyTest < Minitest::Test
 
   end
 
-  def test_it_can_set_letters
+  def test_it_can_set_each_letter
     key = Key.new("02453")
 
     assert_equal 2, key.set_a
@@ -51,9 +58,8 @@ class KeyTest < Minitest::Test
   end
 
   def test_it_can_set_all_numbers
-
     key = Key.new("02453")
-    key.set_numbers
+    key.set_letters
 
     assert_equal 2, key.a
     assert_equal 24, key.b
@@ -61,7 +67,7 @@ class KeyTest < Minitest::Test
     assert_equal 53, key.d
   end
 
-  def test_it_can_assign_numbers_to_letters_in_sets_of_two
+  def test_it_can_read_the_keys_abcd_and_they_are_all_integers
     key = Key.new
 
     assert_instance_of Integer, key.a
@@ -73,10 +79,10 @@ class KeyTest < Minitest::Test
   def test_it_can_be_assigned_numbers_instead_of_randomly_generating_them
     key = Key.new("02453")
 
-    assert_instance_of Integer, key.a
-    assert_instance_of Integer, key.b
-    assert_instance_of Integer, key.c
-    assert_instance_of Integer, key.d
+    assert_equal 2, key.a
+    assert_equal 24, key.b
+    assert_equal 45, key.c
+    assert_equal 53, key.d
   end
 
 end

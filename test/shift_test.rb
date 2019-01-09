@@ -5,14 +5,25 @@ require 'mocha/minitest'
 require './lib/shift'
 require './lib/key'
 require './lib/offset'
-require 'pry'
 
 class ShiftTest < Minitest::Test
 
   def test_it_exists
-    key = Key.new
-    offset = Offset.new
+    key = mock
+    offset = mock
+
+    key.stubs(:a).returns(1)
+    key.stubs(:b).returns(2)
+    key.stubs(:c).returns(3)
+    key.stubs(:d).returns(4)
+
+    offset.stubs(:a).returns(1)
+    offset.stubs(:b).returns(2)
+    offset.stubs(:c).returns(3)
+    offset.stubs(:d).returns(4)
+
     shift = Shift.new(key, offset)
+
     assert_instance_of Shift, shift
   end
 

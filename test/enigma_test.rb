@@ -95,27 +95,13 @@ class EnigmaTest < Minitest::Test
     date = Offset.new("050119")
     shift = Shift.new(key, date)
 
-    message = "abcd"
+    message = "abcd".split('')
     expected = "qzpi"
 
-    assert_equal expected, enigma.rotate_forward_full_message(message, shift)
+    assert_equal expected, enigma.rotate_forward(message, shift)
   end
 
-  def test_it_can_decrypt_a_message
-
-    enigma = Enigma.new
-
-    expected =   {
-                    decryption: "hello world",
-                    key: "02715",
-                    date: "040895"
-                  }
-
-    assert_equal expected,  enigma.decrypt("keder ohulw", "02715", "040895")
-
-  end
-
-  def test_it_can_rotate_backward
+  def test_it_can_rotate_back
 
     enigma = Enigma.new
     key = Key.new("1234")
@@ -135,17 +121,60 @@ class EnigmaTest < Minitest::Test
     date = Offset.new("050119")
     shift = Shift.new(key, date)
 
-    message = "qzp!"
+    message = "qzp!".split('')
     expected = "abc!"
 
-    assert_equal expected, enigma.rotate_back(message.split(''),shift)
+    assert_equal expected, enigma.rotate_back(message,shift)
 
   end
+
+  def test_it_can_rotate_forward_a_full_message
+    enigma = Enigma.new
+    key = Key.new("02715")
+    date = Offset.new("040895")
+    shift = Shift.new(key, date)
+
+    message = "hello world"
+
+    actual = enigma.rotate_forward_full_message(message, shift)
+    expected = "keder ohulw"
+
+    assert_equal expected, actual
+  end
+
+  def test_it_can_rotate_back_a_full_message
+    enigma = Enigma.new
+    key = Key.new("02715")
+    date = Offset.new("040895")
+    shift = Shift.new(key, date)
+
+    message = "keder ohulw"
+
+    actual = enigma.rotate_back_full_message(message, shift)
+    expected = "hello world"
+
+    assert_equal expected, actual
+  end
+
+  def test_it_can_decrypt_a_message
+
+    enigma = Enigma.new
+
+    expected =   {
+                    decryption: "hello world",
+                    key: "02715",
+                    date: "040895"
+                  }
+
+    assert_equal expected,  enigma.decrypt("keder ohulw", "02715", "040895")
+
+  end
+
+
 
   def test_it_uses_todays_date_if_no_date_is_given
 
     enigma = Enigma.new
-    encrypted = enigma.encrypt("hello world", "02715")
     today = Date.today.strftime("%d%m%y")
 
 
@@ -154,20 +183,20 @@ class EnigmaTest < Minitest::Test
                 :key =>  "02715",
                 :date => today
     }
-    assert_equal expected, encrypted
+    assert_equal expected, enigma.encrypt("hello world", "02715")
   end
 
   def test_it_can_decrypt_a_message_with_just_a_key_by_using_todays_date
 
     enigma = Enigma.new
-    encrypted = enigma.decrypt("nfhauasdxm ", "02715")
     today = Date.today.strftime("%d%m%y")
+
     expected = {
                 :decryption => "hello world",
                 :key =>  "02715",
                 :date => today
-    }
-    assert_equal expected, encrypted
+              }
+    assert_equal expected,enigma.decrypt("nfhauasdxm ", "02715")
   end
 
   def test_it_generates_a_random_key_and_uses_todays_date_if_only_a_message_is_given_to_encrypt
@@ -180,22 +209,6 @@ class EnigmaTest < Minitest::Test
     assert_equal 11, encrypted[:encryption].length
     assert_equal today, encrypted[:date]
     assert_equal 5, encrypted[:key].length
-
   end
 
-  # def test_it_can_crack_an_encrypted_message
-  #   skip
-  #   enigma = Enigma.new
-  #   binding.pry
-  #   actual = enigma.crack("vjqtbeaweqihssi", "291018")
-  #
-  #   expected = {
-  #               decryption: "hello world end",
-  #               date: "291018",
-  #               key: "08304"
-  #             }
-  #   binding.pry
-  #   assert_equal expected, actual
-  #
-  # end
 end
