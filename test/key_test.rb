@@ -17,7 +17,6 @@ class KeyTest < Minitest::Test
     key.set_key("2020")
 
     assert_equal "2020", key.numbers
-
   end
 
   def test_it_can_randomly_generate_five_numbers
@@ -59,9 +58,8 @@ class KeyTest < Minitest::Test
   end
 
   def test_it_can_set_all_numbers
-
     key = Key.new("02453")
-    key.set_numbers
+    key.set_letters
 
     assert_equal 2, key.a
     assert_equal 24, key.b
@@ -69,7 +67,7 @@ class KeyTest < Minitest::Test
     assert_equal 53, key.d
   end
 
-  def test_it_can_assign_numbers_to_letters_in_sets_of_two
+  def test_it_can_read_the_keys_abcd_and_they_are_all_integers
     key = Key.new
 
     assert_instance_of Integer, key.a
@@ -85,6 +83,11 @@ class KeyTest < Minitest::Test
     assert_instance_of Integer, key.b
     assert_instance_of Integer, key.c
     assert_instance_of Integer, key.d
+
+    assert_equal 2, key.a
+    assert_equal 24, key.b
+    assert_equal 45, key.c
+    assert_equal 53, key.d
   end
 
 end
