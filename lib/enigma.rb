@@ -52,9 +52,9 @@ class Enigma
  end
 
  def crack(message, date = nil)
-   possible_keys = ("00000".."99999").to_a
+   all_possible_keys = ("00000".."99999").to_a
 
-   found_key = possible_keys.find do |key|
+   found_key = all_possible_keys.find do |key|
     decryption = decrypt(message, key, date)
     decryption[:decryption][-4..-1] == " end"
    end
