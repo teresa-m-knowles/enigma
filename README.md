@@ -1,9 +1,9 @@
-# enigma
+# Enigma
 
 ## Self Evaluation:  
 
-### Functionality: 3 .
-  Enigma Class with encrypt and decrypt methods successfully implemented. Encrypt/decrypt command line interfaces successfully implemented  
+### Functionality: 4 .
+  Cracking method and command line interface successfully implemented
 
 ### OOP: 3
   Project is broken into logical components consisting of at least 4 classes that have single responsibilities. No more than 2 methods are longer than 7 lines. No class is longer than 100 lines. While there may be 1 or 2 lapses, variable and method names clearly communicate purpose.  
