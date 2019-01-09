@@ -11,8 +11,7 @@
 
 ### TDD: 3
 
-  Every method is tested at both the unit and integration level. Git history demonstrates students are writing tests before implementation code. Test coverage metrics show coverage at 95% or greater.  
+  All test names clearly communicate the purpose of the test. At least one test implements mocks and stubs. Test coverage metrics show 100% coverage
+### Version Control: 4 
 
-### Version Control: 3  
-
-  At least 30 commits. At least 10 pull requests. No more than 3 commits include multiple pieces of functionality.
+ At least 40 commits. At least 15 pull requests that are named and documented to clearly communicate the purpose of the pull request. No commits include multiple pieces of functionality. No commit message is ambiguous.
