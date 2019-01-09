@@ -95,27 +95,13 @@ class EnigmaTest < Minitest::Test
     date = Offset.new("050119")
     shift = Shift.new(key, date)
 
-    message = "abcd"
+    message = "abcd".split('')
     expected = "qzpi"
 
-    assert_equal expected, enigma.rotate_forward_full_message(message, shift)
+    assert_equal expected, enigma.rotate_forward(message, shift)
   end
 
-  def test_it_can_decrypt_a_message
-
-    enigma = Enigma.new
-
-    expected =   {
-                    decryption: "hello world",
-                    key: "02715",
-                    date: "040895"
-                  }
-
-    assert_equal expected,  enigma.decrypt("keder ohulw", "02715", "040895")
-
-  end
-
-  def test_it_can_rotate_backward
+  def test_it_can_rotate_back
 
     enigma = Enigma.new
     key = Key.new("1234")
@@ -135,12 +121,28 @@ class EnigmaTest < Minitest::Test
     date = Offset.new("050119")
     shift = Shift.new(key, date)
 
-    message = "qzp!"
+    message = "qzp!".split('')
     expected = "abc!"
 
-    assert_equal expected, enigma.rotate_back(message.split(''),shift)
+    assert_equal expected, enigma.rotate_back(message,shift)
 
   end
+
+  def test_it_can_decrypt_a_message
+
+    enigma = Enigma.new
+
+    expected =   {
+                    decryption: "hello world",
+                    key: "02715",
+                    date: "040895"
+                  }
+
+    assert_equal expected,  enigma.decrypt("keder ohulw", "02715", "040895")
+
+  end
+
+
 
   def test_it_uses_todays_date_if_no_date_is_given
 
