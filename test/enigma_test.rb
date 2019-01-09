@@ -223,4 +223,13 @@ class EnigmaTest < Minitest::Test
     assert_equal expected, actual
   end
 
+  def test_crack_uses_todays_date_if_no_date_is_given
+    enigma = Enigma.new
+    encrypted = enigma.encrypt("hello world end")
+
+    cracked_hash = enigma.crack(encrypted[:encryption])
+
+    assert_equal "hello world end", cracked_hash[:decryption]
+  end
+
 end
