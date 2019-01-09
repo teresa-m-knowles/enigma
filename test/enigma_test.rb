@@ -175,7 +175,6 @@ class EnigmaTest < Minitest::Test
   def test_it_uses_todays_date_if_no_date_is_given
 
     enigma = Enigma.new
-    encrypted = enigma.encrypt("hello world", "02715")
     today = Date.today.strftime("%d%m%y")
 
 
@@ -184,7 +183,7 @@ class EnigmaTest < Minitest::Test
                 :key =>  "02715",
                 :date => today
     }
-    assert_equal expected, encrypted
+    assert_equal expected, enigma.encrypt("hello world", "02715")
   end
 
   def test_it_can_decrypt_a_message_with_just_a_key_by_using_todays_date
