@@ -7,12 +7,16 @@ class Key
               :d
 
   def initialize(optional_key = nil)
-    if optional_key
-      @numbers = optional_key
-    else
-       @numbers = generate_numbers
-    end
+    set_key(optional_key)
     set_letters
+  end
+
+  def set_key(key = nil)
+    if key
+      @numbers = key
+    else
+      @numbers = generate_numbers
+    end
   end
 
   def generate_numbers
