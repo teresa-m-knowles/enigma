@@ -221,7 +221,6 @@ class EnigmaTest < Minitest::Test
                 key: "08304"
               }
     assert_equal expected, actual
-
   end
 
 end
