@@ -211,4 +211,17 @@ class EnigmaTest < Minitest::Test
     assert_equal 5, encrypted[:key].length
   end
 
+  def test_it_can_crack_an_encrypted_message
+    enigma = Enigma.new
+    actual = enigma.crack("vjqtbeaweqihssi", "291018")
+
+    expected = {
+                decryption: "hello world end",
+                date: "291018",
+                key: "08304"
+              }
+    assert_equal expected, actual
+
+  end
+
 end
