@@ -48,7 +48,7 @@ class KeyTest < Minitest::Test
 
   end
 
-  def test_it_can_set_letters
+  def test_it_can_set_each_letter
     key = Key.new("02453")
 
     assert_equal 2, key.set_a
